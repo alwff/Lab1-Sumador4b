@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\aleja\OneDrive\Documentos\Atmel Studio\7.0\Laboratorio1\Laboratorio1\main.asm Mon Feb 05 19:58:06 2024
+AVRASM ver. 2.2.8  C:\Users\aleja\OneDrive\Documentos\Atmel Studio\7.0\Laboratorio1\Laboratorio1\main.asm Mon Feb 05 22:49:51 2024
 
 
 EQU  SIGNATURE_000 0000001e
@@ -697,11 +697,11 @@ EQU  SPMRaddr     00000032
 EQU  INT_VECTORS_SIZE 00000034
 CSEG Setup        00000004
 CSEG LOOP         0000001a
-CSEG BUT1         00000034
-CSEG BUT2         0000003b
-CSEG BUT3         00000042
-CSEG BUT4         00000049
-CSEG BUT5         00000050
-CSEG Delayy       0000002d
-CSEG DelayyA      0000002e
-CSEG DelayyB      0000002f
+CSEG BUT1         00000031
+CSEG BUT2         00000038
+CSEG BUT3         0000003f
+CSEG BUT4         00000046
+CSEG BUT5         0000004d
+CSEG Delayy       0000002a
+CSEG DelayyA      0000002b
+CSEG DelayyB      0000002c

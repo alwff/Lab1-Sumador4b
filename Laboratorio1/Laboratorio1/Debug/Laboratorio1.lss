@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\aleja\OneDrive\Documentos\Atmel Studio\7.0\Laboratorio1\Laboratorio1\main.asm Mon Feb 05 19:58:06 2024
+AVRASM ver. 2.2.8  C:\Users\aleja\OneDrive\Documentos\Atmel Studio\7.0\Laboratorio1\Laboratorio1\main.asm Mon Feb 05 22:49:51 2024
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
 C:\Users\aleja\OneDrive\Documentos\Atmel Studio\7.0\Laboratorio1\Laboratorio1\main.asm(17): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\M328PDEF.INC'
@@ -996,7 +996,7 @@ C:\Users\aleja\OneDrive\Documentos\Atmel Studio\7.0\Laboratorio1\Laboratorio1\ma
                                  ; Proyecto: Laboratorio 1
                                  ; Hardware: ATMEGA328P
                                  ; Creado: 30/01/2024
-                                 ; Última modificación: 04/02/2024
+                                 ; Última modificación: 05/02/2024
                                  ;
                                  ;******************************************************************
                                  ; ENCABEZADO
@@ -1072,10 +1072,10 @@ C:\Users\aleja\OneDrive\Documentos\Atmel Studio\7.0\Laboratorio1\Laboratorio1\ma
                                  	
                                  	;Setting
                                  	;Direcciones
-00000a e02f                      	LDI R18, 0b0000_1111 ; (1<<PC3)|(1<<PC2)|(1<<PC1)|(1<<PC0) ;Sumador 1 
-00000b e237                      	LDI R19, 0b0010_0111 ;(1<<PB5)|(1<<PB2)|(1<<PB1)|(1<<PB0) ;Sumador 2 
-00000c e14f                      	LDI R20, 0b0001_1111 ;(1<<PD4)|(1<<PD3)|(1<<PD2)|(1<<PD1)|(1<<PD0)	;Resultado 
-00000d b934                      	OUT	DDRB, R19 ;DDR en la dirección asignada se carga el registro.
+00000a e02f                      	LDI R18, 0b0000_1111 ; (1<<PC3)|(1<<PC2)|(1<<PC1)|(1<<PC0) para Sumador 1 
+00000b e237                      	LDI R19, 0b0010_0111 ; (1<<PB5)|(1<<PB2)|(1<<PB1)|(1<<PB0) para Sumador 2 
+00000c e14f                      	LDI R20, 0b0001_1111 ; (1<<PD4)|(1<<PD3)|(1<<PD2)|(1<<PD1)|(1<<PD0) para Resultado 
+00000d b934                      	OUT	DDRB, R19 ; DDR en la dirección asignada se carga el registro.
 00000e b927                      	OUT	DDRC, R18
 00000f b94a                      	OUT	DDRD, R20
 000010 e128                      	LDI R18, 0b0001_1000 ; Pullups
@@ -1095,20 +1095,17 @@ C:\Users\aleja\OneDrive\Documentos\Atmel Studio\7.0\Laboratorio1\Laboratorio1\ma
                                  ;******************************************************************
                                  
                                  LOOP: 
-00001a b955                      	OUT PORTB, R21 ;Sumador 1
-00001b b968                      	OUT PORTC, R22 ;Sumador 2
-00001c b97b                      	OUT PORTD, R23 ;Resultado
-00001d 9b1c                      	SBIS PINB, PB4
-00001e 940e 0034                 	CALL BUT1
-000020 9b1b                      	SBIS PINB, PB3
-000021 940e 003b                 	CALL BUT2
-000023 9b34                      	SBIS PINC, PC4
-000024 940e 0042                 	CALL BUT3
-000026 9b35                      	SBIS PINC, PC5
-000027 940e 0049                 	CALL BUT4
-000029 9b4d                      	SBIS PIND, PD5
-00002a 940e 0050                 	CALL BUT5
-00002c cfed                      	RJMP LOOP
+00001a 9b1c                      	SBIS PINB, PB4
+00001b 940e 0031                 	CALL BUT1
+00001d 9b1b                      	SBIS PINB, PB3
+00001e 940e 0038                 	CALL BUT2
+000020 9b34                      	SBIS PINC, PC4
+000021 940e 003f                 	CALL BUT3
+000023 9b35                      	SBIS PINC, PC5
+000024 940e 0046                 	CALL BUT4
+000026 9b4d                      	SBIS PIND, PD5
+000027 940e 004d                 	CALL BUT5
+000029 cff0                      	RJMP LOOP
                                  
                                  ;****************************************************************** 
                                  ; Delay
@@ -1116,15 +1113,15 @@ C:\Users\aleja\OneDrive\Documentos\Atmel Studio\7.0\Laboratorio1\Laboratorio1\ma
                                  ;******************************************************************
                                  Delayy: 
                                  	
-00002d ef9f                      	LDI R25, 0xFF ; El valor máximo para el ATmega328p
+00002a ef9f                      	LDI R25, 0xFF ; El valor máximo para el ATmega328p
                                  	DelayyA: 
-00002e efaf                      		LDI R26, 0xFF
+00002b efaf                      		LDI R26, 0xFF
                                  		DelayyB: 
-00002f 959a                      			DEC R25
-000030 f7f1                      			BRNE DelayyB ; Branch if not equal, siempre que no sea 0 se cicla
-000031 95aa                      			DEC R26
-000032 f7d9                      			BRNE DelayyA
-000033 9508                      	RET ; Regresa al punto donde fue llamada la etiqueta
+00002c 959a                      			DEC R25
+00002d f7f1                      			BRNE DelayyB ; Branch if not equal, siempre que no sea 0 se cicla
+00002e 95aa                      			DEC R26
+00002f f7d9                      			BRNE DelayyA
+000030 9508                      	RET ; Regresa al punto donde fue llamada la etiqueta
                                   	
                                  ;****************************************************************** 
                                  		
@@ -1141,50 +1138,50 @@ C:\Users\aleja\OneDrive\Documentos\Atmel Studio\7.0\Laboratorio1\Laboratorio1\ma
                                  ;****************************************************************** 
                                  
                                  BUT1:
-000034 940e 002d                 CALL Delayy ; Retraso
-000036 27bb                      CLR R27 ; Se limpia R27	
-000037 2fbc                      MOV R27, R28 ; A R27 se le asigna valor de 1 bit
-000038 0f5b                      ADD R21, R27 ; Se le suma al valor de R27 A R21 
-000039 b955                      OUT PORTB, R21 ; El resultado sale a PORTC
-00003a cfdf                      RJMP LOOP
+000031 940e 002a                 CALL Delayy ; Retraso
+000033 27bb                      CLR R27 ; Se limpia R27	
+000034 2fbc                      MOV R27, R28 ; A R27 se le asigna valor de 1 bit
+000035 0f5b                      ADD R21, R27 ; Se le suma al valor de R27 A R21 
+000036 b955                      OUT PORTB, R21 ; El resultado sale a PORTB
+000037 cfe2                      RJMP LOOP
                                  
                                  BUT2:	
-00003b 940e 002d                 CALL Delayy
-00003d 27bb                      CLR R27
-00003e 2fbc                      MOV R27, R28
-00003f 1b5b                      SUB R21, R27 ; Se le resta el valor de R27 A R21 
-000040 b955                      OUT PORTB, R21
-000041 cfd8                      RJMP LOOP
+000038 940e 002a                 CALL Delayy
+00003a 27bb                      CLR R27
+00003b 2fbc                      MOV R27, R28
+00003c 1b5b                      SUB R21, R27 ; Se le resta el valor de R27 A R21 
+00003d b955                      OUT PORTB, R21
+00003e cfdb                      RJMP LOOP
                                  
                                  ;****************************************************************** 
                                  ; SUMADOR 2 (Usa el registro R22)
                                  ;****************************************************************** 
                                  
                                  BUT3:
-000042 940e 002d                 CALL Delayy
-000044 27bb                      CLR R27 ; Se limpia R27	
-000045 2fbc                      MOV R27, R28 ; A R27 se le asigna valor de 1 bit
-000046 0f6b                      ADD R22, R27 ; Se le suma al valor de R27 A R22 
-000047 b968                      OUT PORTC, R22 ; El resultado sale a PORTC
-000048 cfd1                      RJMP LOOP
+00003f 940e 002a                 CALL Delayy
+000041 27bb                      CLR R27 ; Se limpia R27	
+000042 2fbc                      MOV R27, R28 ; A R27 se le asigna valor de 1 bit
+000043 0f6b                      ADD R22, R27 ; Se le suma al valor de R27 A R22 
+000044 b968                      OUT PORTC, R22 ; El resultado sale a PORTC
+000045 cfd4                      RJMP LOOP
                                  
                                  BUT4: 
-000049 940e 002d                 CALL Delayy
-00004b 27bb                      CLR R27
-00004c 2fbc                      MOV R27, R28
-00004d 1b6b                      SUB R22, R27 ; Se le resta el valor de R27 A R22
-00004e b968                      OUT PORTC, R22
-00004f cfca                      RJMP LOOP
+000046 940e 002a                 CALL Delayy
+000048 27bb                      CLR R27
+000049 2fbc                      MOV R27, R28
+00004a 1b6b                      SUB R22, R27 ; Se le resta el valor de R27 A R22
+00004b b968                      OUT PORTC, R22
+00004c cfcd                      RJMP LOOP
                                  
                                  ;****************************************************************** 
                                  ; RESULTADO (Usa el registro R23)
                                  ;****************************************************************** 
                                  
                                  BUT5:
-000050 940e 002d                 CALL Delayy
-000052 2f75                      MOV R23, R21 ; Copia el valor de R21 en R23
-000053 0f76                      ADD R23, R22 ; Suma lo que hay en R22 a R23 
-000054 b97b                      OUT PORTD, R23
+00004d 940e 002a                 CALL Delayy
+00004f 2f75                      MOV R23, R21 ; Copia el valor de R21 en R23
+000050 0f76                      ADD R23, R22 ; Suma lo que hay en R22 a R23 
+000051 b97b                      OUT PORTD, R23
 
 
 RESOURCE USE INFORMATION
@@ -1205,7 +1202,7 @@ counted separately from r26..r31 here.
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
 r13:   0 r14:   0 r15:   0 r16:   2 r17:   2 r18:   4 r19:   4 r20:   4 
-r21:   7 r22:   7 r23:   5 r24:   4 r25:   2 r26:   2 r27:  12 r28:   5 
+r21:   6 r22:   6 r23:   4 r24:   4 r25:   2 r26:   2 r27:  12 r28:   5 
 r29:   0 r30:   0 r31:   0 
 Registers used: 13 out of 35 (37.1%)
 
@@ -1222,7 +1219,7 @@ cpi   :   0 cpse  :   0 dec   :   2 eor   :   0 fmul  :   0 fmuls :   0
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   0 jmp   :   0 
 ld    :   0 ldd   :   0 ldi   :  16 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   5 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  16 pop   :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  13 pop   :   0 
 push  :   0 rcall :   0 ret   :   1 reti  :   0 rjmp  :   6 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   5 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
@@ -1234,7 +1231,7 @@ Instructions used: 13 out of 113 (11.5%)
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x0000ac    172      0    172   32768   0.5%
+[.cseg] 0x000000 0x0000a6    166      0    166   32768   0.5%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
